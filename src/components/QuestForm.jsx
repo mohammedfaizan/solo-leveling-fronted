@@ -12,9 +12,6 @@ export default function QuestForm({ onClose }) {
   const addQuest = (e) => {
     e.preventDefault();
 
-    const savedQuests = JSON.parse(localStorage.getItem("quests")) || {};
-    const firstQuestDate =
-      savedQuests.firstQuestDate || new Date().toISOString().split("T")[0];
     const newQuest = {
       id: Date.now(),
       name: questName,
@@ -22,13 +19,10 @@ export default function QuestForm({ onClose }) {
     };
 
     setQuests(() => {
-      const updatedData = {
-        firstQuestDate,
-        quests: [...(savedQuests.quests || []), newQuest],
-      };
-      localStorage.setItem("quests", JSON.stringify(updatedData));
+      const updatedQuests = [...quests, newQuest];
+      localStorage.setItem("quests", JSON.stringify(updatedQuests));
       console.log(quests);
-      return updatedData.quests;
+      return updatedQuests;
     });
 
     setQuestName("");
