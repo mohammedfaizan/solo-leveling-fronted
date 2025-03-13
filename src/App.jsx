@@ -7,16 +7,14 @@ export default function App() {
 
   return (
     <div className="flex flex-col min-h-screen items-center justify-center bg-gradient-to-b from-blue-900 via-black to-blue-900 p-6">
-      <h1 className="text-white text-3xl font-extrabold mb-8 drop-shadow-lg">
-        One Day at a Time
+      <h1 className="text-white text-4xl font-extrabold mb-2 drop-shadow-lg">
+        Level Up Every Day! ⚡
       </h1>
+      <p className="text-white text-lg mb-8">
+        Build your habit streaks with daily quests!
+      </p>
 
-      <div className="w-full flex flex-col items-center space-y-6">
-        {/* Removed restrictive border & padding */}
-        <div className="w-full flex justify-center">
-          <QuestHeatmap />
-        </div>
-
+      <div className="w-full flex flex-col items-center space-y-10">
         {!isFormVisible && (
           <button
             onClick={() => setIsFormVisible(true)}
@@ -28,6 +26,9 @@ export default function App() {
         )}
 
         {isFormVisible && <QuestForm onClose={() => setIsFormVisible(false)} />}
+        <div className="w-full flex justify-center">
+          <QuestHeatmap />
+        </div>
       </div>
     </div>
   );
