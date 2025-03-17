@@ -1,15 +1,29 @@
 import React, { useEffect, useState } from "react";
 import CalendarHeatmap from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
+import fetchQuestAPI from "./api/fetchQuests";
 
 export default function QuestHeatmap() {
   const [savedQuests, setSavedQuests] = useState(
     JSON.parse(localStorage.getItem("quests")) || []
   );
 
+  function handleResponse(responseData) {
+    console.log(responseData);
+    console.log("response");
+  }
+
+  function handleError(errorMessage) {
+    alert(errorMessage);
+    console.log(errorMessage);
+  }
+
+  const fetchAllQuests = function () {
+    fetchQuestAPI(handleResponse, handleError);
+  };
   useEffect(() => {
     localStorage.setItem("quests", JSON.stringify(savedQuests));
-    console.log("Updated localStorage:", localStorage.getItem("quests"));
+    fetchAllQuests();
   }, [savedQuests]);
 
   if (savedQuests.length === 0) {
