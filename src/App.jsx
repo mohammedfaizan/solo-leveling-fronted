@@ -4,7 +4,9 @@ import QuestHeatmap from "./components/QuestHeatmap.jsx";
 
 export default function App() {
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [refresh, setRefresh] = useState(false);
 
+  const triggerRefresh = () => setRefresh((prev) => !prev);
   return (
     <div className="flex flex-col min-h-screen items-center justify-center bg-gradient-to-b from-blue-900 via-black to-blue-900 p-6">
       <h1 className="text-white text-4xl font-extrabold mb-2 drop-shadow-lg">
@@ -25,9 +27,14 @@ export default function App() {
           </button>
         )}
 
-        {isFormVisible && <QuestForm onClose={() => setIsFormVisible(false)} />}
+        {isFormVisible && (
+          <QuestForm
+            onClose={() => setIsFormVisible(false)}
+            triggerRefresh={triggerRefresh}
+          />
+        )}
         <div className="w-full flex justify-center">
-          <QuestHeatmap />
+          <QuestHeatmap refresh={refresh} />
         </div>
       </div>
     </div>

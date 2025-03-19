@@ -1,31 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import createQuestAPI from "./api/CreateQuest";
+import fetchQuestAPI from "./api/fetchQuests";
 
-export default function QuestForm({ onClose }) {
+export default function QuestForm({ onClose, triggerRefresh }) {
   const [questName, setQuestName] = useState("");
-  const [quests, setQuests] = useState([]);
 
-  useEffect(() => {
-    const savedQuests = JSON.parse(localStorage.getItem("quests")) || [];
-    setQuests(savedQuests);
-  }, []);
+  const [loading, setLoading] = useState(false);
 
   const addQuest = (e) => {
     e.preventDefault();
 
     const newQuest = {
-      id: Date.now(),
       name: questName,
       completedDays: {},
     };
 
-    setQuests(() => {
-      const updatedQuests = [...quests, newQuest];
-      localStorage.setItem("quests", JSON.stringify(updatedQuests));
-      console.log(quests);
-      return updatedQuests;
-    });
+    createQuestAPI(newQuest, handleResponse, handleError, setLoading);
+    fetchQuestAPI(handleResponse, handleError);
+    onClose();
+  };
 
-    setQuestName("");
+  const handleError = function (errorMessage) {
+    alert(errorMessage);
+    console.log(errorMessage);
+  };
+
+  const handleResponse = function (responseData) {
+    if (responseData.success) {
+      console.log("handled successfully");
+      console.log(responseData);
+      triggerRefresh();
+      onClose();
+    }
   };
 
   return (
@@ -50,9 +56,10 @@ export default function QuestForm({ onClose }) {
           />
           <button
             type="submit"
+            disabled={loading}
             className="mt-4 w-full bg-blue-700 p-3 text-white shadow-[0_0_10px_rgba(0,122,255,0.6)] transition-all hover:shadow-[0_0_20px_rgba(0,122,255,1)]"
           >
-            Add Quest
+            {loading ? "Adding..." : "Add Quest"}
           </button>
         </form>
       </div>

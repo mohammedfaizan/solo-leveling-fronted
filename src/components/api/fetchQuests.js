@@ -5,6 +5,7 @@ async function fetchQuestAPI(handleResponse, handleError) {
 
     const url = `${baseUrl}${endpoint}`;
 
+    console.log(url);
     const response = await fetch(url);
 
     if (!response.ok) {

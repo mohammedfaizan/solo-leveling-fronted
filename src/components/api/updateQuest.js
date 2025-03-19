@@ -1,12 +1,10 @@
-async function createQuestAPI(values, handleResponse, handleError, setLoading) {
-  setLoading(true);
+async function updateQuestAPI(values, questId, handleResponse, handleError) {
   try {
     const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
 
-    const endpoint = "/quest";
+    const endpoint = `/quest/${questId}`;
 
     const url = `${baseUrl}${endpoint}`;
-    console.log(url);
 
     const requestBody = JSON.stringify({
       name: values.name,
@@ -14,7 +12,7 @@ async function createQuestAPI(values, handleResponse, handleError, setLoading) {
     });
 
     const response = await fetch(url, {
-      method: "POST",
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: requestBody,
     });
@@ -22,15 +20,12 @@ async function createQuestAPI(values, handleResponse, handleError, setLoading) {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.message || "failed to create task");
+      throw new Error(data.message || "quest was not updated");
     }
 
     handleResponse(data);
   } catch (error) {
     handleError(error.message);
-  } finally {
-    setLoading(false);
   }
 }
-
-export default createQuestAPI;
+export default updateQuestAPI;
