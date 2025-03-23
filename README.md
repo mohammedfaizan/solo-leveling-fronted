@@ -1,5 +1,7 @@
 # Quest Tracking System - Frontend
 
+🔗 **Live Link:** [https://sololevelr.netlify.app](https://sololevelr.netlify.app)
+
 ## 📌 Overview
 
 The **Quest Tracking System** is a **habit-building application** that allows users to track their daily quests and visualize their progress using a **heatmap**. Built using **React, TailwindCSS, and Vite**, this frontend is designed for a seamless and engaging experience.
@@ -91,8 +93,6 @@ yarn build  # or npm run build
 - ✅ **Dark Mode** toggle
 - ✅ **More UI Enhancements**
 - ✅ **User Authentication** for better security
-
-## 🌍 Live Demo
 
 ## 🔗 Backend Repository
 
