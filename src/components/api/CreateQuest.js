@@ -1,12 +1,18 @@
 async function createQuestAPI(values, handleResponse, handleError, setLoading) {
   setLoading(true);
   try {
-    const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
+    const baseUrl = import.meta.env.VITE_BACKEND2_BASE_URL;
 
     const endpoint = "/quest";
 
     const url = `${baseUrl}${endpoint}`;
     console.log(url);
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      handleError("No authentication token found");
+      return;
+    }
 
     const requestBody = JSON.stringify({
       name: values.name,
@@ -15,7 +21,10 @@ async function createQuestAPI(values, handleResponse, handleError, setLoading) {
 
     const response = await fetch(url, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: requestBody,
     });
 

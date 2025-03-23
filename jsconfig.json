@@ -3,6 +3,7 @@
     "baseUrl": "./src",
     "checkJs": true,
     "jsx": "react",
-    "module": "ES2022"
+    "module": "ES2022",
+    "moduleResolution": "node"
   }
 }
