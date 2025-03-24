@@ -1,6 +1,7 @@
 # Quest Tracking System - Frontend
 
-🔗 **Live Link:** [https://sololevelr.netlify.app](https://sololevelr.netlify.app)
+🔗 **Live Link:** [https://sololevelr.netlify.app](https://sololevelr.netlify.app)  
+🔗 **Backend Repository:** [Quest Backend Repository](https://github.com/mohammedfaizan/quest_backend)
 
 ## 📌 Overview
 
@@ -8,10 +9,10 @@ The **Quest Tracking System** is a **habit-building application** that allows us
 
 ## 🚀 Features
 
+- **User Authentication** - Secure login and registration with JWT authentication.
 - **Daily Quest Creation** - Add custom quests with personalized names.
 - **Heatmap Visualization** - Track progress visually using **react-calendar-heatmap**.
-- **Local & Cloud Syncing** - Store progress locally and sync with the backend.
-- **Secure Authentication** - Users can **register and log in** using JWT authentication.
+- **Sync with Backend** - All quests are stored and retrieved from the backend API.
 - **Responsive UI** - Built with **TailwindCSS** for a modern and adaptive design.
 
 ## 🛠️ Tech Stack
@@ -19,7 +20,11 @@ The **Quest Tracking System** is a **habit-building application** that allows us
 - **Frontend**: React, TailwindCSS, Vite
 - **State Management**: React Hooks (useState, useEffect)
 - **API Integration**: Fetch API for communication with the backend
-- **Storage**: LocalStorage (for offline tracking)
+- **Storage**: LocalStorage (only for storing JWT token)
+
+## 🛠️ Backend Development
+
+The backend of the Quest Tracking System is built using Node.js and Express.js, providing a robust and scalable API to manage quests and user authentication. Data is stored in MongoDB, ensuring efficient handling of user quests. Authentication is implemented using JWT (JSON Web Tokens) and Passport.js to secure user sessions. The backend is deployed on Render, making it accessible globally. The backend is maintained in a separate repository to facilitate easier deployment and management.
 
 ## 📂 Project Structure
 
@@ -34,7 +39,8 @@ quest-tracking-frontend/
 │   │   ├── createQuestAPI.js
 │   │   ├── fetchQuestsAPI.js
 │   ├── pages/
-│   │   ├── Home.jsx
+│   │   ├── Login.jsx
+│   │   ├── Register.jsx
 │   ├── App.jsx
 │   ├── main.jsx
 │   ├── index.css
@@ -92,11 +98,6 @@ yarn build  # or npm run build
 - ✅ **Push Notifications** for reminders
 - ✅ **Dark Mode** toggle
 - ✅ **More UI Enhancements**
-- ✅ **User Authentication** for better security
-
-## 🔗 Backend Repository
-
-🔗 **[Quest Backend Repository](https://github.com/mohammedfaizan/quest_backend)**
 
 ## 📜 License
 
